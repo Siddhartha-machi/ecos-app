@@ -7,6 +7,8 @@ import 'package:ecos_main/common/form/models.dart';
 import 'package:ecos_main/common/form/custom_textfield.dart';
 import 'package:ecos_main/common/form/custom_rating.dart';
 import 'package:ecos_main/common/form/custom_checkbox.dart';
+import 'package:ecos_main/common/form/custom_dropdown.dart';
+import 'package:ecos_main/common/form/custom_radio.dart';
 
 // Main Dynamic Form Builder Widget
 class FormManager extends StatelessWidget {
@@ -15,7 +17,7 @@ class FormManager extends StatelessWidget {
 
   final bool isEditMode;
   final Map<String, dynamic>? initialData;
-  final double? defaultGap = 10;
+  final double? defaultGap;
   final EdgeInsetsGeometry? padding;
   final bool? useGroupName;
 
@@ -27,6 +29,7 @@ class FormManager extends StatelessWidget {
     this.initialData,
     this.padding,
     this.useGroupName,
+    this.defaultGap = 10,
   });
 
   @override
@@ -50,7 +53,7 @@ class FormManager extends StatelessWidget {
   Map<String, dynamic> get _initialData {
     Map<String, dynamic> data = {};
     for (final field in fields) {
-      data[field.name] = initialData![field.name] ?? field.defaultValue;
+      data[field.name] = initialData?[field.name] ?? field.defaultValue;
     }
 
     return data;
@@ -181,9 +184,9 @@ class FormManager extends StatelessWidget {
       case GenericFieldType.feedback:
         formField = CustomRating(field);
       case GenericFieldType.radio:
-      // TODO
+        formField = CustomRadiobox(field);
       case GenericFieldType.dropdown:
-      // TODO
+        formField = CustomDropdown(field);
       case GenericFieldType.date:
       // TODO
       case GenericFieldType.time:
@@ -196,6 +199,9 @@ class FormManager extends StatelessWidget {
         formField = const Text("Unsupported Field Type");
     }
 
+    if (_shouldBeVisible(field)) {
+      return formField;
+    }
     return Visibility(
       visible: _shouldBeVisible(field),
       child: formField,

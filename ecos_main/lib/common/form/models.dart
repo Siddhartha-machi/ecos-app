@@ -15,19 +15,19 @@ enum GenericFieldType {
   feedback,
 }
 
-class GenericFormField<T, U> {
+class GenericFormField {
   final String name;
   final GenericFieldType type;
 
   // Optional attributes
   final String? label;
-  final T? defaultValue;
+  final dynamic defaultValue;
   final String? hintText;
   final String? helperText;
-  final List<T>? options; // For dropdown, radio, etc.
+  final List<GenericFieldOption>? options; // For dropdown, radio, etc.
   final Map<String, dynamic>? dependencies;
   final double? size;
-  final U? showIfValue;
+  final dynamic showIfValue;
   final bool halfWidth;
   final double? gap;
   final int? prefixIcon;
@@ -66,4 +66,18 @@ class GenericFormField<T, U> {
     this.dependencies,
     this.group,
   });
+}
+
+class GenericFieldOption {
+  const GenericFieldOption({
+    required this.value,
+    required this.optionLabel,
+    this.helperText,
+    this.iconConfig,
+  });
+
+  final String value;
+  final String optionLabel;
+  final String? helperText;
+  final int? iconConfig;
 }

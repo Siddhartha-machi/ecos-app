@@ -8,7 +8,8 @@ typedef VLst<T> = List<VType<T>>;
 
 class ValidatorFactory {
   // common validators
-  static VType<T> _requiredValidator<T>(GenericFormField field, VLst<T> vLst) {
+  static VType<T> _requiredValidator<T>(GenericFormField field, VLst<T> vLst,
+      {String? customErr}) {
     if (field.isRequired != true) {
       return (value) {
         if (!Global.isEmpty(value)) {
@@ -19,7 +20,7 @@ class ValidatorFactory {
       };
     } else {
       return FormBuilderValidators.compose<T>(
-          [FormBuilderValidators.required(), ...vLst]);
+          [FormBuilderValidators.required(errorText: customErr), ...vLst]);
     }
   }
 
@@ -90,10 +91,11 @@ class ValidatorFactory {
     return _requiredValidator<String>(field, validators);
   }
 
-  static VType<String> dropdownFieldValidator(GenericFormField field) {
-    final validators = <String? Function(dynamic)>[];
+  static VType<GenericFieldOption> dropdownFieldValidator(
+      GenericFormField field) {
+    final validators = <String? Function(GenericFieldOption?)>[];
 
-    return _requiredValidator<String>(field, validators);
+    return _requiredValidator<GenericFieldOption>(field, validators);
   }
 
   static VType<String> sliderFieldValidator(GenericFormField field) {
@@ -106,5 +108,15 @@ class ValidatorFactory {
     final VLst<bool> validators = [];
 
     return _requiredValidator<bool>(field, validators);
+  }
+
+  static VType<GenericFieldOption> radioFieldValidator(GenericFormField field) {
+    final validators = <String? Function(GenericFieldOption?)>[];
+
+    return _requiredValidator<GenericFieldOption>(
+      field,
+      validators,
+      customErr: "Select one of the options below.",
+    );
   }
 }
