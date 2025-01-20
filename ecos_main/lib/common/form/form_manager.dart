@@ -9,6 +9,7 @@ import 'package:ecos_main/common/form/custom_rating.dart';
 import 'package:ecos_main/common/form/custom_checkbox.dart';
 import 'package:ecos_main/common/form/custom_dropdown.dart';
 import 'package:ecos_main/common/form/custom_radio.dart';
+import 'package:ecos_main/common/form/custom_datetime.dart';
 
 // Main Dynamic Form Builder Widget
 class FormManager extends StatelessWidget {
@@ -188,11 +189,9 @@ class FormManager extends StatelessWidget {
       case GenericFieldType.dropdown:
         formField = CustomDropdown(field);
       case GenericFieldType.date:
-      // TODO
       case GenericFieldType.time:
-      // TODO
-      case GenericFieldType.color:
-      // TODO
+      case GenericFieldType.dateTime:
+        formField = CustomDatetime(field);
       case GenericFieldType.file:
       // TODO
       default:

@@ -9,7 +9,7 @@ enum GenericFieldType {
   dropdown,
   date,
   time,
-  color,
+  dateTime,
   file,
   rating,
   feedback,

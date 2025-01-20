@@ -98,12 +98,6 @@ class ValidatorFactory {
     return _requiredValidator<GenericFieldOption>(field, validators);
   }
 
-  static VType<String> sliderFieldValidator(GenericFormField field) {
-    final validators = <String? Function(dynamic)>[];
-
-    return _requiredValidator<String>(field, validators);
-  }
-
   static VType<bool> checkFieldValidator(GenericFormField field) {
     final VLst<bool> validators = [];
 
@@ -118,5 +112,11 @@ class ValidatorFactory {
       validators,
       customErr: "Select one of the options below.",
     );
+  }
+
+  static VType<DateTime> dateTimeValidator(GenericFormField field) {
+    final validators = <String? Function(DateTime?)>[];
+
+    return _requiredValidator<DateTime>(field, validators);
   }
 }
