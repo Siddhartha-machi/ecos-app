@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import 'package:ecos_main/common/form/validators.dart';
 import 'package:ecos_main/common/utils.dart';
-import 'package:ecos_main/common/form/models.dart';
+import 'package:ecos_main/common/models/form_models.dart';
 
 class CustomTextfield extends StatelessWidget {
   const CustomTextfield(this.config, {super.key});

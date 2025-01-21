@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import 'package:ecos_main/common/form/models.dart';
+import 'package:ecos_main/common/models/form_models.dart';
 import 'package:ecos_main/common/utils.dart';
 import 'package:ecos_main/common/form/validators.dart';
 

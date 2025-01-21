@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_emoji_feedback/flutter_emoji_feedback.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import 'package:ecos_main/common/form/models.dart';
+import 'package:ecos_main/common/models/form_models.dart';
 import 'package:flutter_rating/flutter_rating.dart';
 
 class CustomRating extends StatelessWidget {
