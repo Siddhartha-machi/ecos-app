@@ -1,12 +1,33 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
+import 'package:ecos_main/common/models/route_models.dart';
 import 'package:ecos_main/common/animations/beat.dart';
 import 'package:ecos_main/common/utils.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _navigateToLogin();
+  }
+
+  void _navigateToLogin() async {
+    // TODO API addition
+    await Future.delayed(const Duration(seconds: 2));
+    if (mounted) {
+      context.go(Routes.auth.login);
+    }
+  }
 
   Widget _appLogo(Color color) {
     return SvgPicture.asset(
