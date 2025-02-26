@@ -1,6 +1,7 @@
 class _AuthRoutes {
   String get login => '/login';
   String get register => '/register';
+  String get personalDetails => '/personal-details';
   String get forgotPassword => '/forgot_password';
   String get changePassword => '/change_password';
 
@@ -22,9 +23,16 @@ class _Extensions {
   const _Extensions();
 }
 
+class _Debug {
+  String get test => '/test';
+
+  const _Debug();
+}
+
 class Routes {
   static const home = '/';
   static const splashScreen = '/splash-screen';
   static const auth = _AuthRoutes();
   static const extension = _Extensions();
+  static const debug = _Debug();
 }

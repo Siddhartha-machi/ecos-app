@@ -30,10 +30,12 @@ class CustomRouteFactory {
 
   static GoRoute staticRouteBuilder({
     required String path,
+    required String name,
     Widget Function(BuildContext, GoRouterState)? builder,
   }) {
     return GoRoute(
       path: path,
+      name: name,
       builder: builder ?? _fallbackBuilder,
     );
   }
@@ -48,16 +50,17 @@ class CustomRouteFactory {
   }) {
     return GoRoute(
       path: '/$basePath',
+      name: name,
       builder: rootBuilder,
       routes: [
         idRouteBuilder(
           path: '/$basePath/detail/:id',
-          name: name,
+          name: '$name detail',
           builder: detailBuilder,
         ),
         idRouteBuilder(
           path: '/$basePath/update/:id',
-          name: name,
+          name: '$name update',
           builder: updateBuilder,
         ),
         ...specialRoutes

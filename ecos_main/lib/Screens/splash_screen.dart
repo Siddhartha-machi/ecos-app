@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:ecos_main/common/models/route_models.dart';
 import 'package:ecos_main/common/animations/beat.dart';
 import 'package:ecos_main/common/utils.dart';
+import 'package:ecos_main/common/background/gradiant.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -42,61 +43,44 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  BoxDecoration _decoration(BuildContext context) {
-    return BoxDecoration(
-      gradient: LinearGradient(
-        colors: [
-          Theme.of(context).primaryColor.withAlpha(150),
-          Theme.of(context).primaryColor.withAlpha(200),
-          Theme.of(context).primaryColor.withAlpha(255)
-        ],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme.onPrimary;
-    return Scaffold(
-      body: Container(
-        decoration: _decoration(context),
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              BeatAnimation(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _appLogo(color),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppConfig.APP_NAME,
-                          style: TextStyle(
-                            color: color,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                          ),
+    return Gradiant(
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            BeatAnimation(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _appLogo(color),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppConfig.APP_NAME,
+                        style: TextStyle(
+                          color: color,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
                         ),
-                        Text(
-                          AppConfig.APP_CAPTION,
-                          style: TextStyle(
-                            color: color,
-                            fontSize: 14,
-                          ),
+                      ),
+                      Text(
+                        AppConfig.APP_CAPTION,
+                        style: TextStyle(
+                          color: color,
+                          fontSize: 14,
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
