@@ -88,10 +88,10 @@ class FormManager extends StatelessWidget {
   }
 
   Widget _separator(bool vertical) {
-    Widget separator = const VerticalDivider(indent: 6, endIndent: 6);
+    Widget separator = const SizedBox(width: 8);
 
     if (vertical) {
-      separator = const Divider(height: 0, indent: 0, thickness: 1);
+      separator = const SizedBox(height: 8);
     }
 
     return separator;
@@ -150,14 +150,7 @@ class FormManager extends StatelessWidget {
 
       widgets.add(
         Container(
-          margin: const EdgeInsets.only(bottom: 12.0),
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6.0),
-            border: Border.all(
-              color: Theme.of(context).dividerColor.withAlpha(100),
-            ),
-          ),
+          margin: const EdgeInsets.only(bottom: 8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: widgetGroup,
@@ -178,20 +171,20 @@ class FormManager extends StatelessWidget {
       case GenericFieldType.double:
       case GenericFieldType.email:
       case GenericFieldType.password:
-        formField = CustomTextfield(field);
+        formField = CustomTextfield(config: field);
       case GenericFieldType.checkbox:
-        formField = CustomCheckbox(field);
+        formField = CustomCheckbox(config: field);
       case GenericFieldType.rating:
       case GenericFieldType.feedback:
         formField = CustomRating(field);
       case GenericFieldType.radio:
         formField = CustomRadiobox(field);
       case GenericFieldType.dropdown:
-        formField = CustomDropdown(field);
+        formField = CustomDropdown(config: field);
       case GenericFieldType.date:
       case GenericFieldType.time:
       case GenericFieldType.dateTime:
-        formField = CustomDatetime(field);
+        formField = CustomDatetime(config: field);
       case GenericFieldType.file:
       // TODO
       default:

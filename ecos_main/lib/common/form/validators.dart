@@ -10,6 +10,9 @@ class ValidatorFactory {
   // common validators
   static VType<T> _requiredValidator<T>(GenericFormField field, VLst<T> vLst,
       {String? customErr}) {
+    if (Global.isEmpty(customErr)) {
+      customErr = '${field.label ?? 'field'} is required.';
+    }
     if (field.isRequired != true) {
       return (value) {
         if (!Global.isEmpty(value)) {
@@ -101,7 +104,11 @@ class ValidatorFactory {
   static VType<bool> checkFieldValidator(GenericFormField field) {
     final VLst<bool> validators = [];
 
-    return _requiredValidator<bool>(field, validators);
+    return _requiredValidator<bool>(
+      field,
+      validators,
+      customErr: "You need to check this box.",
+    );
   }
 
   static VType<GenericFieldOption> radioFieldValidator(GenericFormField field) {
