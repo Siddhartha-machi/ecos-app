@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO API addition
     await Future.delayed(const Duration(seconds: 2));
     if (mounted) {
-      context.go(Routes.auth.login);
+      context.go(Paths.auth.login.absolutePath);
     }
   }
 

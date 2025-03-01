@@ -12,8 +12,8 @@ class AuthConfigModel {
   late String nextPath;
   late List<GenericFormField> formConfig;
 
-  bool get isLogin => path == Routes.auth.login;
-  bool get isRegister => path == Routes.auth.register;
+  bool get isLogin => path == Paths.auth.login.path;
+  bool get isRegister => path == Paths.auth.register.path;
 
   List<GenericFormField> get _pDconfig {
     return [
@@ -128,7 +128,7 @@ class AuthConfigModel {
   init(String sPath) {
     path = sPath;
     formConfig = [];
-    if (path == Routes.auth.register) {
+    if (path == Paths.auth.register.path) {
       // If the path is set to registration
       headingText = 'Get started now';
       captionText = 'Create an account or login to explore our app.';
@@ -136,8 +136,8 @@ class AuthConfigModel {
       buttonText = 'Register';
       accountMessage = 'Already have an account with us?';
       navigateButtonText = 'Login';
-      nextPath = Routes.auth.login;
-    } else if (path == Routes.auth.login) {
+      nextPath = Paths.auth.login.absolutePath;
+    } else if (path == Paths.auth.login.path) {
       // If the path is set to login
       headingText = 'Login into your account';
       captionText = 'Fill in your account details to login.';
@@ -145,7 +145,7 @@ class AuthConfigModel {
       buttonText = 'Login';
       accountMessage = 'Dont\'t have an account?';
       navigateButtonText = 'Register';
-      nextPath = Routes.auth.register;
+      nextPath = Paths.auth.register.absolutePath;
     } else {
       // If the path is set to personal details
       headingText = 'Almost there!';
@@ -154,7 +154,7 @@ class AuthConfigModel {
       buttonText = 'Save details';
       accountMessage = 'Login with a different account';
       navigateButtonText = 'Login';
-      nextPath = Routes.auth.login;
+      nextPath = Paths.auth.login.absolutePath;
     }
   }
 }

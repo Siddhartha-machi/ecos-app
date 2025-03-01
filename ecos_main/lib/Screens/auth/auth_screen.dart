@@ -99,38 +99,41 @@ class AuthScreen extends StatelessWidget {
   }
 
   Widget _termsAndPrivacyText(BuildContext context) {
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-              color: Theme.of(context).colorScheme.onPrimary,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+          children: <TextSpan>[
+            const TextSpan(text: 'By signing up you agree to our '),
+            TextSpan(
+              text: 'Terms of service',
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontWeight: FontWeight.bold,
+              ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  _launchBottomSheet(context, 'Terms of service');
+                },
             ),
-        children: <TextSpan>[
-          const TextSpan(text: 'By signing up you agree to our '),
-          TextSpan(
-            text: 'Terms of service',
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontWeight: FontWeight.bold,
+            const TextSpan(text: ' and '),
+            TextSpan(
+              text: 'Privacy policy',
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontWeight: FontWeight.bold,
+              ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  _launchBottomSheet(context, 'Terms of service');
+                },
             ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                _launchBottomSheet(context, 'Terms of service');
-              },
-          ),
-          const TextSpan(text: ' and '),
-          TextSpan(
-            text: 'Privacy policy',
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontWeight: FontWeight.bold,
-            ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                _launchBottomSheet(context, 'Terms of service');
-              },
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -184,11 +187,11 @@ class AuthScreen extends StatelessWidget {
     } else if (_oAuthConfig.isRegister) {
       // TODO save partial data
       // Navigate to personal details page
-      return context.go(Routes.auth.personalDetails);
+      return context.go(Paths.auth.personalDetails.absolutePath);
     } else {
       // TODO make API request to create user
     }
-    context.go(Routes.home);
+    context.go(Paths.main.root.absolutePath);
   }
 
   @override
@@ -208,6 +211,7 @@ class AuthScreen extends StatelessWidget {
           _authForm(context),
           const SizedBox(height: 24),
           _signupToggle(context),
+          const SizedBox(height: 6),
           _termsAndPrivacyText(context),
         ],
       ),
