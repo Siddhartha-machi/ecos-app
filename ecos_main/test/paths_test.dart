@@ -54,7 +54,7 @@ void main() {
   });
 
   group('Extension', () {
-    const extension = Extension('/extensions/todo');
+    const extension = ExtensionPath('/extensions/todo');
 
     test('should return correct paths for extension routes', () {
       expect(extension.root.path, '/extensions/todo');
