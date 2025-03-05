@@ -9,26 +9,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'package:ecos_main/common/utils.dart';
 import 'package:ecos_main/common/constants/services_constants.dart';
-
-class APIResponse {
-  final bool isRequestSuccess;
-  final dynamic data;
-  final String? error;
-  final bool hasPagination;
-  final int? currentPage;
-  final String? prevPage;
-  final String? nextPage;
-
-  APIResponse({
-    required this.isRequestSuccess,
-    this.data,
-    this.error,
-    this.hasPagination = false,
-    this.currentPage,
-    this.prevPage,
-    this.nextPage,
-  });
-}
+import 'package:ecos_main/common/models/service_models.dart';
 
 class APIService {
   static const _baseUrl = "https://jsonplaceholder.typicode.com/";
@@ -161,7 +142,7 @@ class APIService {
       result = APIResponse(
         isRequestSuccess: _hasSuccessStatusCode(response),
         data: response.data,
-        hasPagination: hasNextPage(response.data),
+        hasPagination: _hasNextPage(response.data),
         currentPage: response.data['current_page'],
         prevPage: response.data['prev_page'],
         nextPage: response.data['next'],
@@ -174,7 +155,7 @@ class APIService {
   }
 
   /// Checks if the API response contains a next page URL for pagination
-  bool hasNextPage(Map<String, dynamic> responseData) {
+  bool _hasNextPage(Map<String, dynamic> responseData) {
     return responseData.containsKey('next') &&
         Global.isSafe(responseData['next']);
   }

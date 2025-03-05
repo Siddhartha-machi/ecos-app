@@ -87,7 +87,7 @@ class CustomRouteFactory {
 
   /// Nested route builder with optional stateful navigation
   static RouteBase nestedRouteBuilder({
-    required Extension pathConfig,
+    required ExtensionPath pathConfig,
     Widget Function(BuildContext, GoRouterState)? rootBuilder,
     required Widget Function(String, GoRouterState) detailBuilder,
     required Widget Function(String, GoRouterState) updateBuilder,

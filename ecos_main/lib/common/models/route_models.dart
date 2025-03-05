@@ -38,10 +38,10 @@ class _MainPaths {
   PathConfig get profile => const PathConfig.simple('/profile');
 }
 
-class Extension {
+class ExtensionPath {
   final String _root;
 
-  const Extension(this._root);
+  const ExtensionPath(this._root);
 
   PathConfig get root => PathConfig.simple(_root);
   PathConfig get detail => PathConfig(_root, '/detail/:id');
@@ -57,9 +57,10 @@ class ExtensionPaths {
   const ExtensionPaths();
 
   PathConfig get root => const PathConfig.simple(_root);
-  Extension get todo => const Extension('$_root/todo');
-  Extension get eTracker => const Extension('$_root/e-tracker');
-  Extension get fTracker => const Extension('$_root/f-tracker');
+  PathConfig get extensionInfo => const PathConfig(_root, '/:id');
+  ExtensionPath get todo => const ExtensionPath('$_root/todo');
+  ExtensionPath get eTracker => const ExtensionPath('$_root/e-tracker');
+  ExtensionPath get fTracker => const ExtensionPath('$_root/f-tracker');
 }
 
 class _Debug {
