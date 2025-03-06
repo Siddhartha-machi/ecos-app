@@ -1,17 +1,18 @@
 import 'package:ecos_main/services/api_service.dart';
 import 'package:ecos_main/mocks/api_service_mock.dart';
-import 'package:ecos_main/common/models/user_models.dart';
 import 'package:ecos_main/common/models/service_models.dart';
 import 'package:ecos_main/repositories/base_data_service.dart';
+import 'package:ecos_main/common/models/extension_models.dart';
 import 'package:ecos_main/common/constants/services_constants.dart';
 
-class UserDataService implements DataService<User> {
+class ExtensionDataService implements DataService<Extension> {
   final bool _enableMock;
 
-  const UserDataService(bool? enableMock) : _enableMock = enableMock ?? false;
+  const ExtensionDataService(bool? enableMock)
+      : _enableMock = enableMock ?? false;
 
   @override
-  String get endPoint => 'user';
+  String get endPoint => 'extension';
 
   @override
   resolveRequest(APIResponse response) {
@@ -24,7 +25,7 @@ class UserDataService implements DataService<User> {
   }
 
   @override
-  Future<List<User>> fetchAll() async {
+  Future<List<Extension>> fetchAll() async {
     if (_enableMock) return [];
 
     final apiClient = APIService();
@@ -34,7 +35,7 @@ class UserDataService implements DataService<User> {
   }
 
   @override
-  Future<User> fetchById(String id) async {
+  Future<Extension> fetchById(String id) async {
     if (_enableMock) return await MockAPIService().request(endPoint);
 
     final apiClient = APIService();
@@ -44,7 +45,7 @@ class UserDataService implements DataService<User> {
   }
 
   @override
-  Future<User> createItem(User item) async {
+  Future<Extension> createItem(Extension item) async {
     if (_enableMock) return await MockAPIService().request(endPoint);
 
     final apiClient = APIService();
@@ -58,13 +59,13 @@ class UserDataService implements DataService<User> {
   }
 
   @override
-  Future<User> updateItem(String id, User item) async {
+  Future<Extension> updateItem(String id, Extension item) async {
     if (_enableMock) return await MockAPIService().request(endPoint);
 
     final apiClient = APIService();
     final response = await apiClient.request(
       '$endPoint/$id',
-      method: HttpMethod.put,
+      method: HttpMethod.post,
       data: item.toJSON,
     );
 
@@ -76,10 +77,7 @@ class UserDataService implements DataService<User> {
     if (_enableMock) return await MockAPIService().request('delete');
 
     final apiClient = APIService();
-    final response = await apiClient.request(
-      '$endPoint/$id',
-      method: HttpMethod.delete,
-    );
+    final response = await apiClient.request('$endPoint/$id');
 
     return response.isRequestSuccess;
   }

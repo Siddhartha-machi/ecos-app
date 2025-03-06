@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+
+import 'package:ecos_main/common/models/service_models.dart';
+
 abstract class DataService<T> {
   String get endPoint;
 
@@ -13,4 +17,8 @@ abstract class DataService<T> {
 
   // Delete a resource
   Future<bool> deleteItem(String id);
+
+  // Helper methods
+  @protected
+  resolveRequest(APIResponse response);
 }
