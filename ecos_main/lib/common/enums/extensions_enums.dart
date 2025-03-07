@@ -1,2 +1,2 @@
 // Todo
-enum TodoCategory { productive, social }
+enum ExtensionCategory { productive, social }

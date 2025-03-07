@@ -1,34 +1,32 @@
-import 'package:uuid/uuid.dart';
-
 import 'package:ecos_main/common/models/base_models.dart';
 import 'package:ecos_main/common/models/user_models.dart';
 import 'package:ecos_main/common/enums/extensions_enums.dart';
 
-var uuid = const Uuid();
-
 class Extension extends BaseDataModel {
-  Extension({
+  const Extension({
     required this.category,
     required this.title,
     required this.iconCode,
     required this.color,
-  }) : id = uuid.v4();
+    required this.id,
+  });
 
   final String id;
-  final TodoCategory category;
+  final ExtensionCategory category;
   final String title;
   final int iconCode;
   final int color;
 
   factory Extension.fromJSON(Map<String, dynamic> json) {
     return Extension(
-      category: TodoCategory.values.firstWhere(
+      category: ExtensionCategory.values.firstWhere(
         (e) => e.toString() == 'TodoCategory.${json['category']}',
-        orElse: () => TodoCategory.productive,
+        orElse: () => ExtensionCategory.productive,
       ),
       title: json['title'],
       iconCode: json['iconCode'],
       color: json['color'],
+      id: json['id'],
     );
   }
 
@@ -56,8 +54,10 @@ class ExtensionDetail extends BaseDataModel {
     required this.information,
     required this.meta,
     required this.ratings,
+    required this.id,
   });
 
+  final String id;
   final Extension information;
   final String description;
   final String caption;
@@ -69,6 +69,7 @@ class ExtensionDetail extends BaseDataModel {
 
   factory ExtensionDetail.fromJSON(Map<String, dynamic> json) {
     return ExtensionDetail(
+      id: json['id'],
       information: Extension.fromJSON(json['information']),
       description: json['description'],
       comments: (json['comments'] as List)
@@ -101,9 +102,9 @@ class Comment extends BaseDataModel {
     required this.title,
     required this.description,
     required this.createdBy,
+    required this.id,
     createdAt,
-  })  : createdAt = createdAt ?? DateTime.now(),
-        id = uuid.v4();
+  }) : createdAt = createdAt ?? DateTime.now();
 
   final String id;
   final String title;
@@ -113,6 +114,7 @@ class Comment extends BaseDataModel {
 
   factory Comment.fromJSON(Map<String, dynamic> json) {
     return Comment(
+      id: json['id'],
       title: json['title'],
       description: json['description'],
       createdBy: User.fromJSON(json['createdBy']),
