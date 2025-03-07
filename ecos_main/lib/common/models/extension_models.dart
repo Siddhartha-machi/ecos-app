@@ -20,7 +20,7 @@ class Extension extends BaseDataModel {
   factory Extension.fromJSON(Map<String, dynamic> json) {
     return Extension(
       category: ExtensionCategory.values.firstWhere(
-        (e) => e.toString() == 'TodoCategory.${json['category']}',
+        (e) => e.toString() == 'ExtensionCategory.${json['category']}',
         orElse: () => ExtensionCategory.productive,
       ),
       title: json['title'],

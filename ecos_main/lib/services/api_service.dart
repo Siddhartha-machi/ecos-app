@@ -12,7 +12,7 @@ import 'package:ecos_main/common/constants/services_constants.dart';
 import 'package:ecos_main/common/models/service_models.dart';
 
 class APIService {
-  static const _baseUrl = "https://jsonplaceholder.typicode.com/";
+  static const _baseUrl = "http://localhost:3000/";
   static const _storage = FlutterSecureStorage();
 
   static bool _isRefreshing = false;
@@ -141,13 +141,14 @@ class APIService {
 
       result = APIResponse(
         isRequestSuccess: _hasSuccessStatusCode(response),
-        data: response.data,
+        data: response.data['data'],
         hasPagination: _hasNextPage(response.data),
         currentPage: response.data['current_page'],
         prevPage: response.data['prev_page'],
         nextPage: response.data['next'],
       );
     } catch (error) {
+      // TODO return stack trace in dev and a generic message on prod
       result = APIResponse(isRequestSuccess: false, error: error.toString());
     }
 
