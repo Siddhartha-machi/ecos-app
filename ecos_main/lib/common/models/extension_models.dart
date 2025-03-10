@@ -45,6 +45,7 @@ class Extension extends BaseDataModel {
   Map<String, dynamic> get toJSON => {
         'id': id,
         ...toMinJSON,
+        'meta': meta.toJSON,
       };
 }
 
@@ -122,16 +123,16 @@ class ExtensionMeta extends BaseDataModel {
   const ExtensionMeta({
     required this.ageRequired,
     required this.needSubscription,
-    this.isDownload = false,
-    this.rankInTheCategory = '1',
+    required this.isDownload,
+    required this.rankInTheCategory,
   });
 
   factory ExtensionMeta.fromJSON(Map<String, dynamic> json) {
     return ExtensionMeta(
-      ageRequired: json['ageRequired'],
-      needSubscription: json['needSubscription'],
-      isDownload: json['isDownload'],
-      rankInTheCategory: json['rankInTheCategory'],
+      ageRequired: json['ageRequired'] ?? '18+',
+      needSubscription: json['needSubscription'] ?? false,
+      isDownload: json['isDownload'] ?? false,
+      rankInTheCategory: json['rankInTheCategory'] ?? '1',
     );
   }
 
