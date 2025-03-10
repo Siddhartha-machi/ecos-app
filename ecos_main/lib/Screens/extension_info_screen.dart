@@ -23,6 +23,7 @@ class ExtensionDetailScreen extends ConsumerWidget {
 
   final GoRouterState _routeState;
 
+  // Configuration for the review form
   final List<GenericFormField> _reviewFormConfig = [
     GenericFormField(
       name: 'rating',
@@ -52,6 +53,7 @@ class ExtensionDetailScreen extends ConsumerWidget {
     ),
   ];
 
+  // Builds the header section of the extension detail screen
   Widget _buildHeader(BuildContext ctx, ExtensionDetail data) {
     return Row(
       children: [
@@ -94,6 +96,7 @@ class ExtensionDetailScreen extends ConsumerWidget {
     );
   }
 
+  // Builds a metadata item
   Widget _metaItem(String title, String value, Widget child) {
     return SizedBox(
       height: 60,
@@ -109,6 +112,7 @@ class ExtensionDetailScreen extends ConsumerWidget {
     );
   }
 
+  // Builds the metadata section of the extension detail screen
   Widget _buildMetaData(BuildContext ctx, ExtensionDetail data) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6.0),
@@ -135,6 +139,7 @@ class ExtensionDetailScreen extends ConsumerWidget {
     );
   }
 
+  // Builds the description section of the extension detail screen
   Widget _buildDescription(BuildContext ctx, ExtensionDetail data) {
     return Text(
       data.description,
@@ -142,6 +147,7 @@ class ExtensionDetailScreen extends ConsumerWidget {
     );
   }
 
+  // Builds the images list section of the extension detail screen
   Widget _buildImagesList(BuildContext ctx, List<String> images) {
     if (images.isEmpty) {
       return Center(
@@ -177,6 +183,7 @@ class ExtensionDetailScreen extends ConsumerWidget {
     );
   }
 
+  // Builds the comments header section
   Widget _buildCommentsHeader(BuildContext context, ExtensionDetail data) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -190,6 +197,7 @@ class ExtensionDetailScreen extends ConsumerWidget {
     );
   }
 
+  // Builds the comments summary section
   Widget _buildCommentsSummary(BuildContext context, ExtensionDetail data) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -220,6 +228,7 @@ class ExtensionDetailScreen extends ConsumerWidget {
     );
   }
 
+  // Builds a single comment item
   Widget _buildCommentItem(
       BuildContext context, double width, Comment comment) {
     return Container(
@@ -274,6 +283,7 @@ class ExtensionDetailScreen extends ConsumerWidget {
     );
   }
 
+  // Builds the comments list view section
   Widget _buildCommentsListView(
       BuildContext context, double width, List<Comment> comments) {
     return SizedBox(
@@ -294,6 +304,7 @@ class ExtensionDetailScreen extends ConsumerWidget {
     );
   }
 
+  // Builds the similar extensions section
   Widget _buildSimilarExtensions(BuildContext ctx, List<Extension> eList) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,9 +333,11 @@ class ExtensionDetailScreen extends ConsumerWidget {
     );
   }
 
+  // Shows the review dialog
   _showReviewDialog(BuildContext ctx, String todoTitle) {
     final formKey = GlobalKey<FormBuilderState>();
 
+    // Handler for form submission
     submitHandler() {
       if (formKey.currentState?.saveAndValidate() == true) {
         print(formKey.currentState!.value);
