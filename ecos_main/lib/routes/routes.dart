@@ -7,6 +7,8 @@ import 'package:ecos_main/routes/route_factory.dart';
 import 'package:ecos_main/Screens/splash_screen.dart';
 import 'package:ecos_main/Screens/auth/auth_screen.dart';
 import 'package:ecos_main/Screens/home_screen.dart';
+import 'package:ecos_main/Screens/extension_info_screen.dart';
+import 'package:ecos_main/Screens/extension_listing_screen.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: Paths.auth.root.path,
@@ -46,15 +48,19 @@ final GoRouter router = GoRouter(
       enableState: true,
       bottomNavItems: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: Icon(Icons.home_sharp),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person),
+          icon: Icon(Icons.extension_sharp),
+          label: 'Extensions',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person_sharp),
           label: 'Profile',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
+          icon: Icon(Icons.settings_sharp),
           label: 'Settings',
         ),
       ],
@@ -63,6 +69,35 @@ final GoRouter router = GoRouter(
           path: Paths.main.root.path,
           builder: (context, state) => const HomeScreen(),
         ),
+        // Extension Routes
+        CustomRouteFactory.groupedRoutes(
+          root: Paths.extension.root.path,
+          builder: (context, state, _) => const ExtensionListingScreen(),
+          nestedRoutes: [
+            CustomRouteFactory.simpleRoute(
+              path: Paths.extension.extensionInfo.path,
+              builder: (context, state) => ExtensionDetailScreen(state),
+            ),
+            CustomRouteFactory.nestedRouteBuilder(
+              pathConfig: Paths.extension.todo,
+              rootBuilder: (context, state) => const Placeholder(),
+              detailBuilder: (id, state) => const Placeholder(),
+              updateBuilder: (id, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.nestedRouteBuilder(
+              pathConfig: Paths.extension.fTracker,
+              rootBuilder: (context, state) => const Placeholder(),
+              detailBuilder: (id, state) => const Placeholder(),
+              updateBuilder: (id, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.nestedRouteBuilder(
+              pathConfig: Paths.extension.eTracker,
+              rootBuilder: (context, state) => const Placeholder(),
+              detailBuilder: (id, state) => const Placeholder(),
+              updateBuilder: (id, state) => const Placeholder(),
+            ),
+          ],
+        ),
         CustomRouteFactory.simpleRoute(
           path: Paths.main.profile.path,
           builder: (context, state) => const Placeholder(),
@@ -70,31 +105,6 @@ final GoRouter router = GoRouter(
         CustomRouteFactory.simpleRoute(
           path: Paths.main.settings.path,
           builder: (context, state) => const Placeholder(),
-        ),
-      ],
-    ),
-
-    // Extension Routes
-    CustomRouteFactory.groupedRoutes(
-      root: Paths.extension.root.path,
-      nestedRoutes: [
-        CustomRouteFactory.nestedRouteBuilder(
-          pathConfig: Paths.extension.todo,
-          rootBuilder: (context, state) => const Placeholder(),
-          detailBuilder: (id, state) => const Placeholder(),
-          updateBuilder: (id, state) => const Placeholder(),
-        ),
-        CustomRouteFactory.nestedRouteBuilder(
-          pathConfig: Paths.extension.fTracker,
-          rootBuilder: (context, state) => const Placeholder(),
-          detailBuilder: (id, state) => const Placeholder(),
-          updateBuilder: (id, state) => const Placeholder(),
-        ),
-        CustomRouteFactory.nestedRouteBuilder(
-          pathConfig: Paths.extension.eTracker,
-          rootBuilder: (context, state) => const Placeholder(),
-          detailBuilder: (id, state) => const Placeholder(),
-          updateBuilder: (id, state) => const Placeholder(),
         ),
       ],
     ),

@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:ecos_main/common/models/route_models.dart';
 import 'package:ecos_main/common/atoms/contained_button.dart';
-import 'package:ecos_main/common/background/gradiant.dart';
+import 'package:ecos_main/common/background/gradiant_background.dart';
 import 'package:ecos_main/common/form/form_manager.dart';
 import 'package:ecos_main/common/models/auth_config_model.dart';
 
@@ -198,7 +198,7 @@ class AuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     _oAuthConfig.init(routerState.path ?? '');
 
-    return Gradiant(
+    return GradientBackground(
       padding: const EdgeInsets.symmetric(horizontal: 3),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

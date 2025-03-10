@@ -144,6 +144,11 @@ abstract class BaseFormField<T> extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             color: Theme.of(state.context).colorScheme.onPrimary,
+            border: Border.all(
+              color: state.hasError
+                  ? Theme.of(state.context).colorScheme.error
+                  : Theme.of(state.context).colorScheme.primary,
+            ),
           ),
           child: child,
         ),

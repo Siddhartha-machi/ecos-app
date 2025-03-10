@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:ecos_main/common/models/route_models.dart';
 import 'package:ecos_main/common/animations/beat.dart';
 import 'package:ecos_main/common/utils.dart';
-import 'package:ecos_main/common/background/gradiant.dart';
+import 'package:ecos_main/common/background/gradiant_background.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme.onPrimary;
-    return Gradiant(
+    return GradientBackground(
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

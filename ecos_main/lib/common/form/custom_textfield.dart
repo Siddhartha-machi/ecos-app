@@ -49,7 +49,7 @@ class CustomTextfield extends BaseFormField<String> {
             child: TextFormField(
               minLines: config.rows,
               maxLines: config.rows,
-              maxLength: config.maxLength,
+              maxLength: config.rows > 1 ? config.maxLength : null,
               obscuringCharacter: '*',
               initialValue: state.value,
               textInputAction: TextInputAction.next,

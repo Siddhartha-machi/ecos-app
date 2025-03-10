@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Gradiant extends StatelessWidget {
-  const Gradiant({required this.child, this.padding, super.key});
+class GradientBackground extends StatelessWidget {
+  const GradientBackground({required this.child, this.padding, super.key});
 
   final Widget child;
   final EdgeInsetsGeometry? padding;
