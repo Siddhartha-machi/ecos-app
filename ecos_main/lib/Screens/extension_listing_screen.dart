@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import 'package:ecos_main/common/utils.dart';
 import 'package:ecos_main/providers/provider_root.dart';
-import 'package:ecos_main/common/models/route_models.dart';
+import 'package:ecos_main/common/atoms/extension_item.dart';
 import 'package:ecos_main/common/enums/extensions_enums.dart';
 import 'package:ecos_main/common/models/extension_models.dart';
 import 'package:ecos_main/common/atoms/generic_app_listview.dart';
-import 'package:ecos_main/common/base_widgets/data_service_widget.dart';
-import 'package:ecos_main/common/background/custom_color_gradient.dart';
+import 'package:ecos_main/common/atoms/async_state_handler_widget.dart';
 
-class ExtensionListingScreen extends DataConsumerWidget<Extension> {
-  ExtensionListingScreen({super.key})
-      : super(provider: extensionNotifierProvider);
+class ExtensionListingScreen extends ConsumerWidget {
+  const ExtensionListingScreen({super.key});
 
   static const double _horizontalPadding = 16.0;
   static const double _verticalPadding = 16.0;
@@ -31,48 +28,6 @@ class ExtensionListingScreen extends DataConsumerWidget<Extension> {
     return data;
   }
 
-  void _showExtensionDetail(BuildContext ctx, Extension ext) {
-    final path = Paths.extension.extensionInfo.absolutePath;
-    GoRouter.of(ctx).push(path.replaceAll(':id', ext.id));
-  }
-
-  Widget _buildExtensionItem(Extension extension, BuildContext ctx) {
-    return SizedBox(
-      width: 100,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(0),
-        onTap: () => _showExtensionDetail(ctx, extension),
-        child: CustomColorGradient(
-          gradientColor: Color(extension.color),
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Hero(
-                  tag: ValueKey(extension.id),
-                  child: Icon(
-                    IconData(extension.iconCode, fontFamily: 'MaterialIcons'),
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  extension.title.toUpperCase(),
-                  style: const TextStyle(
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildExtensionSection(
     data,
     ExtensionCategory category,
@@ -85,23 +40,28 @@ class ExtensionListingScreen extends DataConsumerWidget<Extension> {
         gap: _gapBetweenItems,
         direction: Axis.horizontal,
         data: _transformedData(data)[category] ?? [],
-        customWidget: (ext) => _buildExtensionItem(ext, ctx),
+        customWidget: (ext) => ExtensionItem(ext),
       ),
     );
   }
 
   @override
-  Widget renderUI(BuildContext context, dynamic data, WidgetRef ref) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: _horizontalPadding,
-        vertical: _verticalPadding,
-      ),
-      child: GenericAppListView<ExtensionCategory, Widget>(
-        data: ExtensionCategory.values,
-        gap: _gapBetweenSections,
-        customWidget: (category) =>
-            _buildExtensionSection(data, category, context),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(extensionNotifierProvider);
+
+    return AsyncStateHandlerWidget(
+      state: state,
+      renderUI: (data) => Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: _horizontalPadding,
+          vertical: _verticalPadding,
+        ),
+        child: GenericAppListView<ExtensionCategory, Widget>(
+          data: ExtensionCategory.values,
+          gap: _gapBetweenSections,
+          customWidget: (category) =>
+              _buildExtensionSection(data, category, context),
+        ),
       ),
     );
   }

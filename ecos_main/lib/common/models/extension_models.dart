@@ -62,6 +62,8 @@ class ExtensionDetail extends BaseDataModel {
     required this.images,
     required this.meta,
     required this.ratings,
+    required this.totalCommentsCount,
+    this.similarExtensions = const [],
   });
 
   final String id;
@@ -72,10 +74,12 @@ class ExtensionDetail extends BaseDataModel {
   final String description;
   final String caption;
   final double ratings;
+  final int totalCommentsCount;
 
   final List<Comment> comments;
   final List<String> images;
   final ExtensionMeta meta;
+  final List<Extension> similarExtensions;
 
   factory ExtensionDetail.fromJSON(Map<String, dynamic> json) {
     return ExtensionDetail(
@@ -95,6 +99,10 @@ class ExtensionDetail extends BaseDataModel {
       images: List<String>.from(json['images']),
       meta: ExtensionMeta.fromJSON(json['meta']),
       ratings: json['ratings'].toDouble(),
+      totalCommentsCount: json['comments'].length,
+      similarExtensions: (json['similarExtensions'] as List)
+          .map((ext) => Extension.fromJSON(ext))
+          .toList(),
     );
   }
 
@@ -107,6 +115,7 @@ class ExtensionDetail extends BaseDataModel {
         'color': color,
         'description': description,
         'caption': caption,
+        'totalCommentsCount': totalCommentsCount,
         'ratings': ratings,
       };
 
@@ -115,7 +124,9 @@ class ExtensionDetail extends BaseDataModel {
         'comments': comments.map((comment) => comment.toJSON).toList(),
         'images': images,
         'meta': meta.toJSON,
-        ...toMinJSON
+        ...toMinJSON,
+        'relatedExtensions':
+            similarExtensions.map((ext) => ext.toJSON).toList(),
       };
 }
 
@@ -159,11 +170,13 @@ class Comment extends BaseDataModel {
     required this.description,
     required this.createdBy,
     required this.id,
+    required this.rating,
     createdAt,
   }) : createdAt = createdAt ?? DateTime.now();
 
   final String id;
   final String title;
+  final double rating;
   final String description;
   final DateTime createdAt;
   final User createdBy;
@@ -172,6 +185,7 @@ class Comment extends BaseDataModel {
     return Comment(
       id: json['id'],
       title: json['title'],
+      rating: json['rating'].toDouble(),
       description: json['description'],
       createdBy: User.fromJSON(json['createdBy']),
       createdAt: DateTime.parse(json['createdAt']),
@@ -182,6 +196,7 @@ class Comment extends BaseDataModel {
   Map<String, dynamic> get toMinJSON => {
         'title': title,
         'description': description,
+        'rating': rating,
         'createdBy': createdBy.toJSON,
         'createdAt': createdAt.toIso8601String(),
       };
