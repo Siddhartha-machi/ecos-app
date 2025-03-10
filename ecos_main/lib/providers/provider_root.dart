@@ -11,19 +11,20 @@ import 'package:ecos_main/providers/extension_notifier.dart';
 import 'package:ecos_main/common/models/user_models.dart';
 import 'package:ecos_main/common/models/extension_models.dart';
 
-final userServiceProvider = Provider<UserDataService>(
+// Services
+final _userServiceProvider = Provider<UserDataService>(
   (ref) => const UserDataService(),
 );
 
-final extensionServiceProvider = Provider<ExtensionDataService>(
+final _extensionServiceProvider = Provider<ExtensionDataService>(
   (ref) => const ExtensionDataService(),
 );
 
-final extensionDetailServiceProvider = Provider<ExtensionDetailDataService>(
+final _extensionDetailServiceProvider = Provider<ExtensionDetailDataService>(
   (ref) => const ExtensionDetailDataService(),
 );
 
-final commentsServiceProvider = Provider<CommentDataService>(
+final _commentsServiceProvider = Provider<CommentDataService>(
   (ref) => const CommentDataService(),
 );
 
@@ -32,27 +33,28 @@ final commentsServiceProvider = Provider<CommentDataService>(
 final userNotifierProvider =
     StateNotifierProvider<UserNotifier, AsyncValue<List<User>>>(
   (ref) => UserNotifier(
-    ref.watch(userServiceProvider),
+    ref.read(_userServiceProvider),
   ),
 );
 
 final extensionNotifierProvider =
     StateNotifierProvider<ExtensionNotifier, AsyncValue<List<Extension>>>(
   (ref) => ExtensionNotifier(
-    ref.watch(extensionServiceProvider),
+    ref.read(_extensionServiceProvider),
   ),
 );
 
-final extensionDetailNotifierProvider = StateNotifierProvider<
-    ExtensionDetailNotifier, AsyncValue<List<ExtensionDetail>>>(
-  (ref) => ExtensionDetailNotifier(
-    ref.watch(extensionDetailServiceProvider),
+final extensionDetailNotifierProvider = StateNotifierProvider.family<
+    ExtensionDetailNotifier, AsyncValue<ExtensionDetail?>, String>(
+  (ref, id) => ExtensionDetailNotifier(
+    ref.read(_extensionDetailServiceProvider),
+    id,
   ),
 );
 
 final commentNotifierProvider =
     StateNotifierProvider<CommentNotifier, AsyncValue<List<Comment>>>(
   (ref) => CommentNotifier(
-    ref.watch(commentsServiceProvider),
+    ref.read(_commentsServiceProvider),
   ),
 );

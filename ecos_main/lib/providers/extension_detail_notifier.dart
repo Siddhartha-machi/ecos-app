@@ -1,24 +1,28 @@
+import 'package:flutter/foundation.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:ecos_main/common/models/extension_models.dart';
 import 'package:ecos_main/repositories/extension_detail_data_service.dart';
 
 class ExtensionDetailNotifier
-    extends StateNotifier<AsyncValue<List<ExtensionDetail>>> {
+    extends StateNotifier<AsyncValue<ExtensionDetail?>> {
   final ExtensionDetailDataService extensionDetailService;
+  final String _id;
 
-  ExtensionDetailNotifier(this.extensionDetailService)
+  ExtensionDetailNotifier(this.extensionDetailService, this._id)
       : super(const AsyncValue.loading()) {
-    fetchExtensionDetails();
+    fetchExtensionDetail();
   }
 
-  Future<void> fetchExtensionDetails() async {
+  Future<void> fetchExtensionDetail() async {
     state = const AsyncValue.loading();
     try {
-      final extensionDetail = await extensionDetailService.fetchAll();
+      final extensionDetail = await extensionDetailService.fetchById(_id);
       state = AsyncValue.data(extensionDetail);
-    } catch (e) {
-      state = AsyncValue.error(e, StackTrace.current);
+    } catch (e, stackTrace) {
+      debugPrint('Application error : ${stackTrace.toString()}');
+      state = AsyncValue.error(e, stackTrace);
     }
   }
 
@@ -26,24 +30,20 @@ class ExtensionDetailNotifier
     try {
       final newExtensionDetail =
           await extensionDetailService.createItem(extensionDetail);
-      state = AsyncValue.data([...state.value ?? [], newExtensionDetail]);
-    } catch (e) {
-      state = AsyncValue.error(e, StackTrace.current);
+      state = AsyncValue.data(newExtensionDetail);
+    } catch (e, stackTrace) {
+      state = AsyncValue.error(e, stackTrace);
     }
   }
 
   Future<void> updateExtensionDetail(
-      String id, ExtensionDetail extensionDetail) async {
+      String id, ExtensionDetail updatedDetail) async {
     try {
       final updatedExtensionDetail =
-          await extensionDetailService.updateItem(id, extensionDetail);
-      state = AsyncValue.data(
-        state.value!
-            .map((e) => e.id == id ? updatedExtensionDetail : e)
-            .toList(),
-      );
-    } catch (e) {
-      state = AsyncValue.error(e, StackTrace.current);
+          await extensionDetailService.updateItem(id, updatedDetail);
+      state = AsyncValue.data(updatedExtensionDetail);
+    } catch (e, stackTrace) {
+      state = AsyncValue.error(e, stackTrace);
     }
   }
 
@@ -51,10 +51,10 @@ class ExtensionDetailNotifier
     try {
       final success = await extensionDetailService.deleteItem(id);
       if (success) {
-        state = AsyncValue.data(state.value!.where((e) => e.id != id).toList());
+        state = const AsyncValue.data(null);
       }
-    } catch (e) {
-      state = AsyncValue.error(e, StackTrace.current);
+    } catch (e, stackTrace) {
+      state = AsyncValue.error(e, stackTrace);
     }
   }
 }

@@ -9,6 +9,7 @@ class Extension extends BaseDataModel {
     required this.iconCode,
     required this.color,
     required this.id,
+    required this.meta,
   });
 
   final String id;
@@ -16,6 +17,7 @@ class Extension extends BaseDataModel {
   final String title;
   final int iconCode;
   final int color;
+  final ExtensionMeta meta;
 
   factory Extension.fromJSON(Map<String, dynamic> json) {
     return Extension(
@@ -27,6 +29,7 @@ class Extension extends BaseDataModel {
       iconCode: json['iconCode'],
       color: json['color'],
       id: json['id'],
+      meta: ExtensionMeta.fromJSON(json['meta']),
     );
   }
 
@@ -47,50 +50,102 @@ class Extension extends BaseDataModel {
 
 class ExtensionDetail extends BaseDataModel {
   const ExtensionDetail({
+    required this.id,
+    required this.title,
+    required this.category,
+    required this.iconCode,
+    required this.color,
     required this.description,
     required this.comments,
     required this.caption,
     required this.images,
-    required this.information,
     required this.meta,
     required this.ratings,
-    required this.id,
   });
 
   final String id;
-  final Extension information;
+  final ExtensionCategory category;
+  final String title;
+  final int iconCode;
+  final int color;
   final String description;
   final String caption;
   final double ratings;
 
   final List<Comment> comments;
   final List<String> images;
-  final Map<String, dynamic> meta;
+  final ExtensionMeta meta;
 
   factory ExtensionDetail.fromJSON(Map<String, dynamic> json) {
     return ExtensionDetail(
       id: json['id'],
-      information: Extension.fromJSON(json['information']),
+      category: ExtensionCategory.values.firstWhere(
+        (e) => e.toString() == 'ExtensionCategory.${json['category']}',
+        orElse: () => ExtensionCategory.productive,
+      ),
+      title: json['title'],
+      iconCode: json['iconCode'],
+      color: json['color'],
       description: json['description'],
       comments: (json['comments'] as List)
           .map((comment) => Comment.fromJSON(comment))
           .toList(),
       caption: json['caption'],
       images: List<String>.from(json['images']),
-      meta: json['meta'],
+      meta: ExtensionMeta.fromJSON(json['meta']),
       ratings: json['ratings'].toDouble(),
     );
   }
 
   @override
   Map<String, dynamic> get toMinJSON => {
-        'information': information.toJSON,
+        'id': id,
+        'category': category.toString().split('.').last,
+        'title': title,
+        'iconCode': iconCode,
+        'color': color,
         'description': description,
-        'comments': comments.map((comment) => comment.toJSON).toList(),
         'caption': caption,
-        'images': images,
-        'meta': meta,
         'ratings': ratings,
+      };
+
+  @override
+  Map<String, dynamic> get toJSON => {
+        'comments': comments.map((comment) => comment.toJSON).toList(),
+        'images': images,
+        'meta': meta.toJSON,
+        ...toMinJSON
+      };
+}
+
+class ExtensionMeta extends BaseDataModel {
+  const ExtensionMeta({
+    required this.ageRequired,
+    required this.needSubscription,
+    this.isDownload = false,
+    this.rankInTheCategory = '1',
+  });
+
+  factory ExtensionMeta.fromJSON(Map<String, dynamic> json) {
+    return ExtensionMeta(
+      ageRequired: json['ageRequired'],
+      needSubscription: json['needSubscription'],
+      isDownload: json['isDownload'],
+      rankInTheCategory: json['rankInTheCategory'],
+    );
+  }
+
+  final String ageRequired;
+  final bool needSubscription;
+  final bool isDownload; // For Android OS
+  final String rankInTheCategory;
+
+  @override
+  Map<String, dynamic> get toMinJSON => {
+        'ageRequired': ageRequired,
+        'needSubscription': needSubscription,
+        'isDownload': isDownload,
+        'rankInTheCategory': rankInTheCategory,
       };
 
   @override
