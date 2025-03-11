@@ -12,7 +12,7 @@ class ExtensionItem extends StatelessWidget {
   final Extension extension;
 
   void _showExtensionDetail(BuildContext ctx, Extension ext) {
-    final path = Paths.extension.extensionInfo.absolutePath;
+    final path = Paths.main.extensionDetail.absolutePath;
     GoRouter.of(ctx).push(path.replaceAll(':id', ext.id));
   }
 

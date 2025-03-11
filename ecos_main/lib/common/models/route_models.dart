@@ -34,33 +34,36 @@ class _MainPaths {
   const _MainPaths();
 
   PathConfig get root => const PathConfig.simple('/');
+  PathConfig get extensionList => const PathConfig.simple('/extension-list');
+  PathConfig get extensionDetail => const PathConfig('/extension-list', '/:id');
   PathConfig get settings => const PathConfig.simple('/settings');
   PathConfig get profile => const PathConfig.simple('/profile');
 }
 
 class ExtensionPath {
-  final String _root;
+  final String _root, _path;
 
-  const ExtensionPath(this._root);
+  const ExtensionPath(this._root, this._path);
 
-  PathConfig get root => PathConfig.simple(_root);
-  PathConfig get detail => PathConfig(_root, '/detail/:id');
-  PathConfig get update => PathConfig(_root, '/update/:id');
+  PathConfig get root => PathConfig(_root, _path);
+  PathConfig get stats => PathConfig('$_root$_path', '/stats');
+  PathConfig get settings => PathConfig('$_root$_path', '/settings');
+  PathConfig get detail => PathConfig('$_root$_path', '/detail/:id');
+  PathConfig get update => PathConfig('$_root$_path', '/update/:id');
 
   String detailWithId(String id) => '$_root/detail/$id';
   String updateWithId(String id) => '$_root/update/:$id';
 }
 
 class ExtensionPaths {
-  static const _root = '/extensions';
+  static const _root = '/your-space';
 
   const ExtensionPaths();
 
   PathConfig get root => const PathConfig.simple(_root);
-  PathConfig get extensionInfo => const PathConfig(_root, '/:id');
-  ExtensionPath get todo => const ExtensionPath('$_root/todo');
-  ExtensionPath get eTracker => const ExtensionPath('$_root/e-tracker');
-  ExtensionPath get fTracker => const ExtensionPath('$_root/f-tracker');
+  ExtensionPath get todo => const ExtensionPath(_root, '/todo');
+  ExtensionPath get eTracker => const ExtensionPath(_root, '/e-tracker');
+  ExtensionPath get fTracker => const ExtensionPath(_root, '/f-tracker');
 }
 
 class _Debug {

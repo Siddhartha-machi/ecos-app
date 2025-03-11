@@ -17,7 +17,7 @@ final GoRouter router = GoRouter(
     // Authentication Routes
     CustomRouteFactory.groupedRoutes(
       root: Paths.auth.root.path,
-      builder: (ctx, state, _) => const SplashScreen(),
+      rootBuilder: (ctx, state) => const SplashScreen(),
       nestedRoutes: [
         CustomRouteFactory.simpleRoute(
           path: Paths.auth.login.path,
@@ -43,61 +43,99 @@ final GoRouter router = GoRouter(
     ),
 
     // Main routes
-    CustomRouteFactory.groupedRoutes(
+    CustomRouteFactory.statefulRouteBuilder(
       root: Paths.main.root.path,
-      enableState: true,
-      bottomNavItems: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home_sharp),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.extension_sharp),
-          label: 'Extensions',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person_sharp),
-          label: 'Profile',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings_sharp),
-          label: 'Settings',
-        ),
-      ],
       nestedRoutes: [
         CustomRouteFactory.simpleRoute(
           path: Paths.main.root.path,
           builder: (context, state) => const HomeScreen(),
         ),
-        // Extension Routes
+        // Extension info Routes
         CustomRouteFactory.groupedRoutes(
-          root: Paths.extension.root.path,
-          builder: (context, state, _) => const ExtensionListingScreen(),
+          root: Paths.main.extensionList.path,
+          rootBuilder: (context, state) => const ExtensionListingScreen(),
           nestedRoutes: [
             CustomRouteFactory.simpleRoute(
-              path: Paths.extension.extensionInfo.path,
+              path: Paths.main.extensionDetail.path,
               builder: (context, state) => ExtensionDetailScreen(state),
-            ),
-            CustomRouteFactory.nestedRouteBuilder(
-              pathConfig: Paths.extension.todo,
-              rootBuilder: (context, state) => const Placeholder(),
-              detailBuilder: (id, state) => const Placeholder(),
-              updateBuilder: (id, state) => const Placeholder(),
-            ),
-            CustomRouteFactory.nestedRouteBuilder(
-              pathConfig: Paths.extension.fTracker,
-              rootBuilder: (context, state) => const Placeholder(),
-              detailBuilder: (id, state) => const Placeholder(),
-              updateBuilder: (id, state) => const Placeholder(),
-            ),
-            CustomRouteFactory.nestedRouteBuilder(
-              pathConfig: Paths.extension.eTracker,
-              rootBuilder: (context, state) => const Placeholder(),
-              detailBuilder: (id, state) => const Placeholder(),
-              updateBuilder: (id, state) => const Placeholder(),
             ),
           ],
         ),
+
+        CustomRouteFactory.groupedRoutes(
+          root: Paths.extension.root.path,
+          rootBuilder: (context, state) => const Placeholder(
+            child: Text('Your space root'),
+          ),
+          nestedRoutes: [
+            /// Todo Extension
+            CustomRouteFactory.simpleRoute(
+              path: Paths.extension.todo.root.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.simpleRoute(
+              path: Paths.extension.todo.stats.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.simpleRoute(
+              path: Paths.extension.todo.settings.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.parameterizedRoute(
+              path: Paths.extension.todo.detail.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.parameterizedRoute(
+              path: Paths.extension.todo.update.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+
+            /// ETracker Extension
+            CustomRouteFactory.simpleRoute(
+              path: Paths.extension.eTracker.root.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.simpleRoute(
+              path: Paths.extension.eTracker.stats.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.simpleRoute(
+              path: Paths.extension.eTracker.settings.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.parameterizedRoute(
+              path: Paths.extension.eTracker.detail.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.parameterizedRoute(
+              path: Paths.extension.eTracker.update.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+
+            /// Todo Extension
+            CustomRouteFactory.simpleRoute(
+              path: Paths.extension.fTracker.root.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.simpleRoute(
+              path: Paths.extension.fTracker.stats.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.simpleRoute(
+              path: Paths.extension.fTracker.settings.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.parameterizedRoute(
+              path: Paths.extension.fTracker.detail.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+            CustomRouteFactory.parameterizedRoute(
+              path: Paths.extension.fTracker.update.path,
+              builder: (context, state) => const Placeholder(),
+            ),
+          ],
+        ),
+
         CustomRouteFactory.simpleRoute(
           path: Paths.main.profile.path,
           builder: (context, state) => const Placeholder(),
