@@ -1,6 +1,8 @@
-import 'package:ecos_main/shared/lib/models/form_models.dart';
-import 'package:ecos_main/core/data/models/route_models.dart';
+
 import 'package:flutter/material.dart';
+
+import 'package:shared/models/form_models.dart';
+import 'package:shared/models/route_models.dart';
 
 class AuthConfigModel {
   late String headingText;

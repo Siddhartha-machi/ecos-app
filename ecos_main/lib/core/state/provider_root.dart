@@ -1,14 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:ecos_main/features/auth/repositories/user_data_service.dart';
+import 'package:ecos_main/features/auth/lib/repositories/user_data_service.dart';
 import 'package:ecos_main/core/data/repositories/extension_data_service.dart';
 import 'package:ecos_main/core/data/repositories/extension_detail_data_service.dart';
 import 'package:ecos_main/core/data/repositories/comments_data_service.dart';
-import 'package:ecos_main/features/auth/state/user_notifier.dart';
+import 'package:ecos_main/features/auth/lib/state/user_notifier.dart';
 import 'package:ecos_main/core/state/comment_notifier.dart';
 import 'package:ecos_main/core/state/extension_detail_notifier.dart';
 import 'package:ecos_main/core/state/extension_notifier.dart';
-import 'package:ecos_main/features/auth/data/models/user_models.dart';
+import 'package:ecos_main/features/auth/lib/models/user_models.dart';
 import 'package:ecos_main/core/data/models/extension_models.dart';
 
 // Services

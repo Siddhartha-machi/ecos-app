@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:ecos_main/core/data/models/route_models.dart';
+import 'package:ecos_main/shared/lib/models/route_models.dart';
 import 'package:ecos_main/core/utils/route_factory.dart';
 import 'package:ecos_main/core/presentation/screens/splash_screen.dart';
-import 'package:ecos_main/features/auth/presentation/screens/auth_screen.dart';
+import 'package:ecos_main/features/auth/lib/presentation/screens/auth_screen.dart';
 import 'package:ecos_main/core/presentation/screens/home_screen.dart';
 import 'package:ecos_main/core/presentation/screens/extension_info_screen.dart';
 import 'package:ecos_main/core/presentation/screens/extension_listing_screen.dart';

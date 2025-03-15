@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import 'package:ecos_main/core/data/models/route_models.dart';
-import 'package:ecos_main/shared/lib/presentation/widgets/atoms/contained_button.dart';
-import 'package:ecos_main/shared/lib/presentation/widgets/background/gradiant_background.dart';
-import 'package:ecos_main/shared/lib/presentation/widgets/form/form_manager.dart';
-import 'package:ecos_main/features/auth/data/models/auth_config_model.dart';
+import 'package:shared/models/route_models.dart';
+import 'package:auth/data/models/auth_config_model.dart';
+import 'package:shared/presentation/widgets/form/form_manager.dart';
+import 'package:shared/presentation/widgets/atoms/contained_button.dart';
+import 'package:shared/presentation/widgets/background/gradiant_background.dart';
 
 class AuthScreen extends StatelessWidget {
   AuthScreen(this.routerState, {super.key});

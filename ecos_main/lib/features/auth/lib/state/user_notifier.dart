@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:ecos_main/features/auth/data/models/user_models.dart';
-import 'package:ecos_main/features/auth/repositories/user_data_service.dart';
+import 'package:auth/data/models/user_models.dart';
+import 'package:auth/repositories/user_data_service.dart';
 
 class UserNotifier extends StateNotifier<AsyncValue<List<User>>> {
   final UserDataService userService;

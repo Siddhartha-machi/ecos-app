@@ -1,5 +1,7 @@
-import 'package:ecos_main/features/auth/constants/enums/user_enums.dart';
-import 'package:ecos_main/shared/lib/models/base_models.dart';
+
+
+import 'package:auth/enums/user_enums.dart';
+import 'package:shared/models/base_models.dart';
 
 class User extends BaseDataModel {
   final String id;
