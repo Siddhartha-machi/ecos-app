@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:ecos_main/common/models/route_models.dart';
+import 'package:ecos_main/core/data/models/route_models.dart';
 
 void main() {
   group('PathConfig', () {
@@ -54,10 +54,10 @@ void main() {
   });
 
   group('Extension', () {
-    const extension = ExtensionPath('/extensions/todo');
+    const extension = ExtensionPath('/extensions', '/todo');
 
     test('should return correct paths for extension routes', () {
-      expect(extension.root.path, '/extensions/todo');
+      expect(extension.root.path, '/todo');
       expect(extension.detail.path, '/detail/:id');
       expect(extension.update.path, '/update/:id');
     });
@@ -72,10 +72,31 @@ void main() {
     const extensionPaths = ExtensionPaths();
 
     test('should return correct paths for extension routes', () {
-      expect(extensionPaths.root.path, '/extensions');
-      expect(extensionPaths.todo.root.path, '/extensions/todo');
-      expect(extensionPaths.eTracker.root.path, '/extensions/e-tracker');
-      expect(extensionPaths.fTracker.root.path, '/extensions/f-tracker');
+      expect(extensionPaths.root.path, '/your-space');
+      expect(extensionPaths.todo.root.path, '/todo');
+      expect(extensionPaths.eTracker.root.path, '/e-tracker');
+      expect(extensionPaths.fTracker.root.path, '/f-tracker');
+
+      /// Absolute paths
+      expect(extensionPaths.todo.root.absolutePath, '/your-space/todo');
+      expect(
+          extensionPaths.eTracker.root.absolutePath, '/your-space/e-tracker');
+      expect(
+          extensionPaths.fTracker.root.absolutePath, '/your-space/f-tracker');
+    });
+    test('should return correct custom paths for extension routes', () {
+      expect(extensionPaths.todo.stats.path, '/stats');
+      expect(extensionPaths.todo.settings.path, '/settings');
+      expect(extensionPaths.todo.detail.path, '/detail/:id');
+      expect(extensionPaths.todo.update.path, '/update/:id');
+
+      expect(extensionPaths.todo.stats.absolutePath, '/your-space/todo/stats');
+      expect(extensionPaths.todo.settings.absolutePath,
+          '/your-space/todo/settings');
+      expect(extensionPaths.todo.detail.absolutePath,
+          '/your-space/todo/detail/:id');
+      expect(extensionPaths.todo.update.absolutePath,
+          '/your-space/todo/update/:id');
     });
   });
 

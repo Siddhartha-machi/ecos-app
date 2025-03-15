@@ -7,9 +7,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
-import 'package:ecos_main/common/utils.dart';
-import 'package:ecos_main/common/constants/services_constants.dart';
-import 'package:ecos_main/common/models/service_models.dart';
+import 'package:ecos_main/core/utils/utils.dart';
+import 'package:ecos_main/shared/constants/services_constants.dart';
+import 'package:ecos_main/shared/models/service_models.dart';
 
 class APIService {
   static const _baseUrl = "http://localhost:3000/";
@@ -138,6 +138,8 @@ class APIService {
         queryParameters: queryParameters,
         options: Options(method: method),
       );
+
+      debugPrint('$method : $_baseUrl$path => ${response.statusCode}');
 
       result = APIResponse(
         isRequestSuccess: _hasSuccessStatusCode(response),
