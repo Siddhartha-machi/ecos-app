@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:ecos_main/core/utils/utils.dart';
 import 'package:ecos_main/core/state/provider_root.dart';
-import 'package:ecos_main/shared/presentation/widgets/atoms/extension_item.dart';
+import 'package:ecos_main/core/presentation/widgets/extension_item.dart';
 import 'package:ecos_main/core/constants/enums/extensions_enums.dart';
 import 'package:ecos_main/core/data/models/extension_models.dart';
 import 'package:ecos_main/shared/presentation/widgets/atoms/generic_app_listview.dart';

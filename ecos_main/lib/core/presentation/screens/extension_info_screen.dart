@@ -10,7 +10,7 @@ import 'package:ecos_main/core/state/provider_root.dart';
 import 'package:ecos_main/shared/presentation/widgets/form/form_manager.dart';
 import 'package:ecos_main/shared/models/form_models.dart';
 import 'package:ecos_main/shared/presentation/widgets/atoms/custom_divider.dart';
-import 'package:ecos_main/shared/presentation/widgets/atoms/extension_item.dart';
+import 'package:ecos_main/core/presentation/widgets/extension_item.dart';
 import 'package:ecos_main/shared/presentation/widgets/atoms/contained_button.dart';
 import 'package:ecos_main/core/data/models/extension_models.dart';
 import 'package:ecos_main/shared/presentation/widgets/atoms/custom_bottom_sheet.dart';
