@@ -9,6 +9,7 @@ import 'package:ecos_main/Screens/auth/auth_screen.dart';
 import 'package:ecos_main/Screens/home_screen.dart';
 import 'package:ecos_main/Screens/extension_info_screen.dart';
 import 'package:ecos_main/Screens/extension_listing_screen.dart';
+import 'package:ecos_main/common/screens/custom_placeholder.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: Paths.auth.root.path,
@@ -64,85 +65,83 @@ final GoRouter router = GoRouter(
 
         CustomRouteFactory.groupedRoutes(
           root: Paths.extension.root.path,
-          rootBuilder: (context, state) => const Placeholder(
-            child: Text('Your space root'),
-          ),
+          rootBuilder: (context, state) => CustomPlaceholder(state),
           nestedRoutes: [
             /// Todo Extension
             CustomRouteFactory.simpleRoute(
               path: Paths.extension.todo.root.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
             CustomRouteFactory.simpleRoute(
               path: Paths.extension.todo.stats.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
             CustomRouteFactory.simpleRoute(
               path: Paths.extension.todo.settings.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
             CustomRouteFactory.parameterizedRoute(
               path: Paths.extension.todo.detail.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
             CustomRouteFactory.parameterizedRoute(
               path: Paths.extension.todo.update.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
 
             /// ETracker Extension
             CustomRouteFactory.simpleRoute(
               path: Paths.extension.eTracker.root.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
             CustomRouteFactory.simpleRoute(
               path: Paths.extension.eTracker.stats.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
             CustomRouteFactory.simpleRoute(
               path: Paths.extension.eTracker.settings.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
             CustomRouteFactory.parameterizedRoute(
               path: Paths.extension.eTracker.detail.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
             CustomRouteFactory.parameterizedRoute(
               path: Paths.extension.eTracker.update.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
 
             /// Todo Extension
             CustomRouteFactory.simpleRoute(
               path: Paths.extension.fTracker.root.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
             CustomRouteFactory.simpleRoute(
               path: Paths.extension.fTracker.stats.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
             CustomRouteFactory.simpleRoute(
               path: Paths.extension.fTracker.settings.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
             CustomRouteFactory.parameterizedRoute(
               path: Paths.extension.fTracker.detail.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
             CustomRouteFactory.parameterizedRoute(
               path: Paths.extension.fTracker.update.path,
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => CustomPlaceholder(state),
             ),
           ],
         ),
 
         CustomRouteFactory.simpleRoute(
           path: Paths.main.profile.path,
-          builder: (context, state) => const Placeholder(),
+          builder: (context, state) => CustomPlaceholder(state),
         ),
         CustomRouteFactory.simpleRoute(
           path: Paths.main.settings.path,
-          builder: (context, state) => const Placeholder(),
+          builder: (context, state) => CustomPlaceholder(state),
         ),
       ],
     ),

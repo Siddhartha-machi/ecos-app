@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:ecos_main/common/screens/empty_route.dart';
-import 'package:ecos_main/common/models/route_models.dart';
 import 'package:ecos_main/Screens/wrappers/shell_screen.dart';
-import 'package:ecos_main/common/utils.dart';
 
 class CustomRouteFactory {
   /// Default fallback screen when no route is found
@@ -21,7 +19,7 @@ class CustomRouteFactory {
   }
 
   /// Helper function to build routes requiring an ID
-  static GoRoute _idRouteBuilder({
+  static GoRoute parameterizedRoute({
     required String path,
     required Widget Function(String, GoRouterState) builder,
     String? Function(BuildContext, GoRouterState)? redirect,
@@ -53,112 +51,31 @@ class CustomRouteFactory {
     );
   }
 
-  /// Creates a grouped route with optional bottom navigation
-  static RouteBase groupedRoutes({
+  /// Creates a stateful route with bottom navigation bar
+  static RouteBase statefulRouteBuilder({
     required String root,
     required List<RouteBase> nestedRoutes,
-    List<BottomNavigationBarItem>? bottomNavItems,
-    bool enableState = false,
-    String? Function(BuildContext, GoRouterState)? redirect,
-    Widget Function(BuildContext, GoRouterState, StatefulNavigationShell?)?
+    Widget Function(BuildContext, GoRouterState, StatefulNavigationShell)?
         builder,
   }) {
-    if (enableState && !Global.isEmpty(bottomNavItems)) {
-      return StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) => ShellScreen(
-          bottomNavItems: bottomNavItems!,
-          navigationShell: navigationShell,
-        ),
-        branches: nestedRoutes
-            .map((route) => StatefulShellBranch(routes: [route]))
-            .toList(),
-      );
-    }
+    return StatefulShellRoute.indexedStack(
+      builder: (_, __, navigationShell) => ShellScreen(navigationShell),
+      branches: nestedRoutes
+          .map((route) => StatefulShellBranch(routes: [route]))
+          .toList(),
+    );
+  }
 
+  /// Creates a grouped route
+  static RouteBase groupedRoutes({
+    required String root,
+    Widget Function(BuildContext, GoRouterState)? rootBuilder,
+    required List<RouteBase> nestedRoutes,
+  }) {
     return GoRoute(
       path: root,
-      redirect: redirect,
-      builder: (context, state) =>
-          builder?.call(context, state, null) ??
-          _fallbackBuilder(context, state),
+      builder: rootBuilder,
       routes: nestedRoutes,
-    );
-  }
-
-  /// Nested route builder with optional stateful navigation
-  static RouteBase nestedRouteBuilder({
-    required ExtensionPath pathConfig,
-    Widget Function(BuildContext, GoRouterState)? rootBuilder,
-    required Widget Function(String, GoRouterState) detailBuilder,
-    required Widget Function(String, GoRouterState) updateBuilder,
-    bool enableState = false,
-    String? Function(BuildContext, GoRouterState)? redirect,
-    List<BottomNavigationBarItem>? bottomNavItems,
-  }) {
-    if (!enableState) {
-      return GoRoute(
-        path: pathConfig.root.path,
-        redirect: redirect,
-        builder: (context, state) =>
-            rootBuilder?.call(context, state) ??
-            _fallbackBuilder(context, state),
-        routes: [
-          _idRouteBuilder(
-              path: pathConfig.detail.path,
-              builder: detailBuilder,
-              redirect: redirect),
-          _idRouteBuilder(
-              path: pathConfig.update.path,
-              builder: updateBuilder,
-              redirect: redirect),
-        ],
-      );
-    }
-
-    return StatefulShellRoute(
-      builder: (context, state, navigationShell) =>
-          rootBuilder?.call(context, state) ?? _fallbackBuilder(context, state),
-      navigatorContainerBuilder: (context, navigationShell, children) =>
-          Scaffold(
-        body: children[navigationShell.currentIndex],
-        bottomNavigationBar: bottomNavItems != null && bottomNavItems.isNotEmpty
-            ? BottomNavigationBar(
-                currentIndex: navigationShell.currentIndex,
-                onTap: navigationShell.goBranch,
-                items: bottomNavItems,
-              )
-            : null,
-      ),
-      branches: [
-        StatefulShellBranch(routes: [
-          _idRouteBuilder(
-              path: pathConfig.detail.path,
-              builder: detailBuilder,
-              redirect: redirect),
-          _idRouteBuilder(
-              path: pathConfig.update.path,
-              builder: updateBuilder,
-              redirect: redirect),
-        ]),
-      ],
-    );
-  }
-
-  /// Creates a stateful shell route
-  static StatefulShellRoute statefulShellRoute({
-    required List<StatefulShellBranch> branches,
-    required Widget Function(
-            BuildContext, GoRouterState, StatefulNavigationShell)
-        builder,
-    String? Function(BuildContext, GoRouterState)? redirect,
-    required Widget Function(
-            BuildContext, StatefulNavigationShell, List<Widget>)
-        navigatorContainerBuilder,
-  }) {
-    return StatefulShellRoute(
-      builder: builder,
-      navigatorContainerBuilder: navigatorContainerBuilder,
-      branches: branches,
     );
   }
 
