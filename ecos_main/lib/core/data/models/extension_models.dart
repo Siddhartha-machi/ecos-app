@@ -1,4 +1,4 @@
-import 'package:ecos_main/shared/models/base_models.dart';
+import 'package:ecos_main/shared/lib/models/base_models.dart';
 import 'package:ecos_main/features/auth/data/models/user_models.dart';
 import 'package:ecos_main/core/constants/enums/extensions_enums.dart';
 

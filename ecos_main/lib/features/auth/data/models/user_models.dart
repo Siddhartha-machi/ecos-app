@@ -1,9 +1,5 @@
-import 'package:uuid/uuid.dart';
-
 import 'package:ecos_main/features/auth/constants/enums/user_enums.dart';
-import 'package:ecos_main/shared/models/base_models.dart';
-
-const uuid = Uuid();
+import 'package:ecos_main/shared/lib/models/base_models.dart';
 
 class User extends BaseDataModel {
   final String id;
@@ -21,6 +17,7 @@ class User extends BaseDataModel {
   final Preferences preferences;
 
   User({
+    required this.id,
     required this.email,
     required this.firstName,
     required this.lastName,
@@ -31,11 +28,11 @@ class User extends BaseDataModel {
     this.password,
     this.profilePictureURL,
     this.bio,
-  })  : id = uuid.v4(),
-        preferences = const Preferences();
+  }) : preferences = const Preferences();
 
   factory User.fromJSON(Map<String, dynamic> data) {
     return User(
+      id: data['id'],
       email: data['email'],
       firstName: data['firstName'],
       lastName: data['lastName'],

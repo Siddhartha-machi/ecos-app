@@ -1,7 +1,9 @@
 import 'package:form_builder_validators/form_builder_validators.dart';
 
-import 'package:ecos_main/core/utils/utils.dart';
-import 'package:ecos_main/shared/models/form_models.dart';
+import 'package:shared/utils/global.dart';
+import 'package:shared/models/form_models.dart';
+
+
 
 typedef VType<T> = String? Function(T?);
 typedef VLst<T> = List<VType<T>>;

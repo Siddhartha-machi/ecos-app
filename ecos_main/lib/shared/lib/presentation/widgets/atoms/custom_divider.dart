@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:ecos_main/shared/enums/atoms_enums.dart';
+
+import 'package:shared/enums/atoms_enums.dart';
 
 class CustomDivider extends StatelessWidget {
   const CustomDivider({super.key, text, align, padding})

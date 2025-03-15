@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:ecos_main/shared/models/service_models.dart';
+import 'package:shared/models/service_models.dart';
+
+
 
 abstract class DataService<T> {
   String get endPoint;

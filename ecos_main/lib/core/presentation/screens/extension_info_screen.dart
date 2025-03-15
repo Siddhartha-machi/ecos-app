@@ -5,18 +5,18 @@ import 'package:flutter_rating/flutter_rating.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import 'package:ecos_main/core/utils/utils.dart';
+import 'package:ecos_main/shared/lib/utils/global.dart';
 import 'package:ecos_main/core/state/provider_root.dart';
-import 'package:ecos_main/shared/presentation/widgets/form/form_manager.dart';
-import 'package:ecos_main/shared/models/form_models.dart';
-import 'package:ecos_main/shared/presentation/widgets/atoms/custom_divider.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/form/form_manager.dart';
+import 'package:ecos_main/shared/lib/models/form_models.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/atoms/custom_divider.dart';
 import 'package:ecos_main/core/presentation/widgets/extension_item.dart';
-import 'package:ecos_main/shared/presentation/widgets/atoms/contained_button.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/atoms/contained_button.dart';
 import 'package:ecos_main/core/data/models/extension_models.dart';
-import 'package:ecos_main/shared/presentation/widgets/atoms/custom_bottom_sheet.dart';
-import 'package:ecos_main/shared/presentation/widgets/atoms/generic_app_listview.dart';
-import 'package:ecos_main/shared/presentation/widgets/background/custom_color_gradient.dart';
-import 'package:ecos_main/shared/presentation/widgets/atoms/async_state_handler_widget.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/atoms/custom_bottom_sheet.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/atoms/generic_app_listview.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/background/custom_color_gradient.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/atoms/async_state_handler_widget.dart';
 
 class ExtensionDetailScreen extends ConsumerWidget {
   ExtensionDetailScreen(this._routeState, {super.key});

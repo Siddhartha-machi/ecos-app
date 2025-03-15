@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 
-import 'package:ecos_main/services/api_service.dart';
-import 'package:ecos_main/shared/models/service_models.dart';
-import 'package:ecos_main/shared/repositories/base_data_service.dart';
+import 'package:ecos_main/shared/lib/services/api_service.dart';
+import 'package:ecos_main/shared/lib/models/service_models.dart';
+import 'package:ecos_main/shared/lib/repositories/base_data_service.dart';
 import 'package:ecos_main/core/data/models/extension_models.dart';
-import 'package:ecos_main/shared/constants/services_constants.dart';
+import 'package:ecos_main/shared/lib/constants/services_constants.dart';
 
 class ExtensionDetailDataService implements DataService<ExtensionDetail> {
   const ExtensionDetailDataService();

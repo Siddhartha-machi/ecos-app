@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:ecos_main/core/utils/utils.dart';
+import 'package:ecos_main/shared/lib/utils/global.dart';
 import 'package:ecos_main/core/state/provider_root.dart';
 import 'package:ecos_main/core/presentation/widgets/extension_item.dart';
 import 'package:ecos_main/core/constants/enums/extensions_enums.dart';
 import 'package:ecos_main/core/data/models/extension_models.dart';
-import 'package:ecos_main/shared/presentation/widgets/atoms/generic_app_listview.dart';
-import 'package:ecos_main/shared/presentation/widgets/atoms/async_state_handler_widget.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/atoms/generic_app_listview.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/atoms/async_state_handler_widget.dart';
 
 class ExtensionListingScreen extends ConsumerWidget {
   const ExtensionListingScreen({super.key});

@@ -6,9 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:ecos_main/core/data/models/route_models.dart';
-import 'package:ecos_main/shared/presentation/widgets/atoms/contained_button.dart';
-import 'package:ecos_main/shared/presentation/widgets/background/gradiant_background.dart';
-import 'package:ecos_main/shared/presentation/widgets/form/form_manager.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/atoms/contained_button.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/background/gradiant_background.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/form/form_manager.dart';
 import 'package:ecos_main/features/auth/data/models/auth_config_model.dart';
 
 class AuthScreen extends StatelessWidget {

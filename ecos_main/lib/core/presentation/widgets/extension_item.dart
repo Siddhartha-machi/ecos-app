@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:ecos_main/core/data/models/route_models.dart';
 import 'package:ecos_main/core/data/models/extension_models.dart';
-import 'package:ecos_main/shared/presentation/widgets/background/custom_color_gradient.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/background/custom_color_gradient.dart';
 
 class ExtensionItem extends StatelessWidget {
   const ExtensionItem(this.extension, {super.key});

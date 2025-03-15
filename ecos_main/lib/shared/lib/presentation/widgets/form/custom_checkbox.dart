@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import 'package:ecos_main/core/utils/utils.dart';
-import 'package:ecos_main/shared/utils/validators.dart';
-import 'package:ecos_main/shared/presentation/widgets/form/base_form_field.dart';
+import 'package:shared/utils/global.dart';
+import 'package:shared/utils/validators.dart';
+import 'package:shared/presentation/widgets/form/base_form_field.dart';
+
 
 class CustomCheckbox extends BaseFormField<bool> {
   const CustomCheckbox({required super.config, super.key});

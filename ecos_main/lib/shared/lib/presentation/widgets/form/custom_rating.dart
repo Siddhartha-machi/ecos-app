@@ -1,11 +1,13 @@
-import 'package:ecos_main/core/utils/utils.dart';
+
 import 'package:flutter/material.dart';
 
-import 'package:flutter_emoji_feedback/flutter_emoji_feedback.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-
-import 'package:ecos_main/shared/models/form_models.dart';
 import 'package:flutter_rating/flutter_rating.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_emoji_feedback/flutter_emoji_feedback.dart';
+
+
+import 'package:shared/utils/global.dart';
+import 'package:shared/models/form_models.dart';
 
 class CustomRating extends StatelessWidget {
   const CustomRating(
@@ -51,7 +53,7 @@ class CustomRating extends StatelessWidget {
               )
             : EmojiFeedback(
                 showLabel: true,
-                rating: state.value?.toInt() ?? 5,
+                initialRating: state.value?.toInt() ?? 5,
                 elementSize: config.size,
                 onChanged: (val) => state.didChange(val?.toDouble()),
               ),

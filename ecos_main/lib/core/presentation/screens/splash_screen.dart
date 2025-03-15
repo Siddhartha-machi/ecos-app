@@ -4,9 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:ecos_main/core/data/models/route_models.dart';
-import 'package:ecos_main/shared/presentation/widgets/animations/beat.dart';
-import 'package:ecos_main/core/utils/utils.dart';
-import 'package:ecos_main/shared/presentation/widgets/background/gradiant_background.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/animations/beat.dart';
+import 'package:ecos_main/shared/lib/utils/global.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/background/gradiant_background.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

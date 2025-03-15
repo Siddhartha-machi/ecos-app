@@ -1,4 +1,4 @@
-import 'package:ecos_main/shared/presentation/widgets/atoms/contained_button.dart';
+import 'package:ecos_main/shared/lib/presentation/widgets/atoms/contained_button.dart';
 import 'package:ecos_main/core/data/models/route_models.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

@@ -1,15 +1,16 @@
-import 'dart:async';
 import 'dart:io';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import 'package:ecos_main/core/utils/utils.dart';
-import 'package:ecos_main/shared/constants/services_constants.dart';
-import 'package:ecos_main/shared/models/service_models.dart';
+import 'package:shared/utils/global.dart';
+import 'package:shared/models/service_models.dart';
+import 'package:shared/constants/services_constants.dart';
+
 
 class APIService {
   static const _baseUrl = "http://localhost:3000/";

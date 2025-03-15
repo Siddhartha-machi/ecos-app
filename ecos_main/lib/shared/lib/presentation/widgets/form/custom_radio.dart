@@ -5,9 +5,10 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import 'package:ecos_main/shared/models/form_models.dart';
-import 'package:ecos_main/core/utils/utils.dart';
-import 'package:ecos_main/shared/utils/validators.dart';
+import 'package:shared/utils/global.dart';
+import 'package:shared/utils/validators.dart';
+import 'package:shared/models/form_models.dart';
+
 
 class CustomRadiobox extends StatelessWidget {
   const CustomRadiobox(this.config, {super.key});

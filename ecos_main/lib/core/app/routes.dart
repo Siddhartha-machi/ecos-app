@@ -9,7 +9,7 @@ import 'package:ecos_main/features/auth/presentation/screens/auth_screen.dart';
 import 'package:ecos_main/core/presentation/screens/home_screen.dart';
 import 'package:ecos_main/core/presentation/screens/extension_info_screen.dart';
 import 'package:ecos_main/core/presentation/screens/extension_listing_screen.dart';
-import 'package:ecos_main/shared/presentation/screens/custom_placeholder.dart';
+import 'package:ecos_main/shared/lib/presentation/screens/custom_placeholder.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: Paths.auth.root.path,

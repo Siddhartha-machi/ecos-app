@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:ecos_main/shared/presentation/screens/empty_route.dart';
+import 'package:ecos_main/shared/lib/presentation/screens/empty_route.dart';
 import 'package:ecos_main/core/presentation/screens/shell_screen.dart';
 
 class CustomRouteFactory {
